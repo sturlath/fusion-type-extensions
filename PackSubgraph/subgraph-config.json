@@ -1,0 +1,4 @@
+{
+  "subgraph": "PackSubgraph",
+  "http": { "baseAddress": "http://localhost:7001/graphql" }
+}
