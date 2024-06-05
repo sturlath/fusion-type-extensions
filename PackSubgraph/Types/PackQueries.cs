@@ -24,10 +24,6 @@ public class PackQueries
         this.logger = logger;
     }
 
-    /// <summary>
-    /// Get all packs
-    /// </summary>
-    /// <returns></returns>
     [UsePaging]
     [UseFiltering]
     [GraphQLDescription("Get all packs")]
@@ -57,12 +53,3 @@ public class PackQueries
         }
     }
 }
-
-[ExtendObjectType<Pack>]
-public class PacksExtensions
-{
-    [BindField("ProductCode")]
-    // 👆This will make fusion replace the ProductCode field in Pack, with the product.
-    public Product Product([Parent] Pack pack) => new Product(pack.ProductCode);
-}
-public record Product(string? code);

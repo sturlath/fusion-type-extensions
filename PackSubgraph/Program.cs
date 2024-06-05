@@ -14,11 +14,11 @@ builder.Services
     .AddGraphQLServer()
     .RegisterDbContext<PackDataContext>()
     .AddErrorFilter<CustomErrorFilter>()
-    .AddQueryType()
     .AddFiltering()
     .AddSorting()
-    // .AddQueryType<PackQueries>()
-    .AddTypeExtension<PackQueries>()
+    .AddQueryType()
+    .AddTypeExtension<PackQueries>()   //.AddQueryType<PackQueries>()
+    .AddTypeExtension<PacksExtensions>() //<-- Gets extends Pack with Product
     .AddInstrumentation(o => o.RenameRootActivity = true);
 
 var app = builder.Build();

@@ -41,9 +41,7 @@ type ProductsEdge {
 type Query {
   "Get all Products"
   products("Returns the first _n_ elements from the list." first: Int "Returns the elements in the list that come after the specified cursor." after: String "Returns the last _n_ elements from the list." last: Int "Returns the elements in the list that come before the specified cursor." before: String where: ProductFilterInput): ProductsConnection
-  productByCode(code: String): Product
-  "Get Product by id"
-  productById(id: Int!): Product
+  productByCode(code: String): Product!
 }
 
 input IntOperationFilterInput {

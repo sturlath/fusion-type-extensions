@@ -8,7 +8,6 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ProductSubgraph.Types;
 [ExtendObjectType(OperationTypeNames.Query)]
-//[ObjectType]
 [GraphQLDescription("Product queries")]
 public class ProductQueries
 {
@@ -48,14 +47,11 @@ public class ProductQueries
         }
     }
 
-    public async Task<Product?> GetProductByCodeAsync([Service(ServiceKind.Synchronized)] ProductionDataContext context, string? code, CancellationToken cancellationToken)
+    public async Task<Product> GetProductByCodeAsync(string? code, [Service(ServiceKind.Synchronized)] ProductionDataContext context)
     {
         try
         {
-            logger.LogInformation("Getting product by code: {Code}", code);
-
-            // Use the CancellationToken to check for cancellation
-            cancellationToken.ThrowIfCancellationRequested();
+            logger.LogInformation("Getting product by code: {ProductCode}", code);
 
             if (code == null)
             {
@@ -63,7 +59,7 @@ public class ProductQueries
             }
 
             // Asynchronously execute the query while respecting cancellation
-            return await context.Products.FirstOrDefaultAsync(t => t.Code == code!, cancellationToken);
+            return await context.Products.FirstOrDefaultAsync(t => t.Code == code);
         }
         catch (Exception ex)
         {
@@ -72,23 +68,4 @@ public class ProductQueries
         }
     }
 
-    [GraphQLDescription("Get Product by id")]
-    public async Task<Product?> GetProductById(int id, [Service(ServiceKind.Synchronized)] ProductionDataContext context, CancellationToken cancellationToken)
-    {
-        try
-        {
-            logger.LogInformation("Getting product by id: {Id}", id);
-
-            // Use the CancellationToken to check for cancellation
-            cancellationToken.ThrowIfCancellationRequested();
-
-            // Asynchronously execute the query while respecting cancellation
-            return await context.Products.FirstOrDefaultAsync(t => t.Id == id, cancellationToken);
-        }
-        catch (Exception ex)
-        {
-            logger.LogError(ex, "Error occurred while getting product by id: {Id}", id);
-            throw;
-        }
-    }
 }

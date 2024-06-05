@@ -363,3 +363,5 @@ MigrationBackup/
 FodyWeavers.xsd
 /PackSubgraph/packdata.db-shm
 /PackSubgraph/packdata.db-wal
+/ProductSubgraph/productiondata.db-shm
+/ProductSubgraph/productiondata.db-wal

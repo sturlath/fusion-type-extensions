@@ -14,8 +14,7 @@ namespace Marel.DFS.ProductionService.Types
 
         public string? ProductCode { get; set; }
 
-        public string? Code { get; set; } = default!;
-
+        // public string? Code { get; set; } = default!;
         //public int PalletId { get; set; }
         //public Pallet? Pallet { get; set; }
 

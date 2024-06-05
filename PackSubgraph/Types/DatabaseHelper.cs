@@ -19,8 +19,7 @@ public class DatabaseHelper
                 new Pack
                 {
                     ProductCode = "P1",
-                    Code = "Code 1"
-
+                    // Code = "Code 1"
                 }
                 );
 

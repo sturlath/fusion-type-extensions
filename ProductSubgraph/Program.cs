@@ -10,11 +10,9 @@ builder.Services
 builder.Services
     .AddGraphQLServer()
     .RegisterDbContext<ProductionDataContext>()
-    .AddTypeExtension<ProductQueries>()
-    .AddQueryType()
     .AddFiltering()
     .AddSorting()
-    //.AddQueryType<ProductQueries>()
+    .AddQueryType()
     .AddTypeExtension<ProductQueries>()
     .AddInstrumentation(o => o.RenameRootActivity = true);
 
