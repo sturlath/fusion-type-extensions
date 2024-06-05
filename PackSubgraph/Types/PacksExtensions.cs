@@ -10,9 +10,8 @@ using Marel.DFS.ProductionService.Types;
 [ExtendObjectType<Pack>]
 public class PacksExtensions
 {
-    [BindField(nameof(Pack.ProductCode))]
-    // 👆This should make fusion replace the ProductCode field in Pack, with the product.
-    // But it doesn´t... what am I missing? 🤔 
+    [BindMember(nameof(Pack.ProductCode))]
+    // 👆This makes fusion replace the ProductCode field in Pack, with the product.
     public Product Product([Parent] Pack pack) => new(pack.ProductCode);
 }
 

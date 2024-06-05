@@ -5,7 +5,6 @@
 type Pack {
   id: Int!
   packId: Int!
-  productCode: String
   product: Product!
 }
 
